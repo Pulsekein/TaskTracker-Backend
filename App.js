@@ -17,7 +17,7 @@ const monthMap = {
 };
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://task-tracker-app20.netlify.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
@@ -43,11 +43,11 @@ app.get('/auth/callback',
       res.cookie("jwt", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        sameSite: "None",
           maxAge: 24 * 60 * 60 * 1000
       });
     
-      res.redirect("http://localhost:3000/main");
+      res.redirect("https://task-tracker-app20.netlify.app/main");
   }
 );
 
@@ -192,7 +192,7 @@ app.post("/signup", async(req,res) =>{
        res.cookie("jwt", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
        });
         
 
@@ -216,7 +216,7 @@ app.post("/login", async(req,res) =>{
         res.cookie("jwt", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
         });
         res.status(200).json({ message: "User logged in successfully!" });
     } catch (error) {
